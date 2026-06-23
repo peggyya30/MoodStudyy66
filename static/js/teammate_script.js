@@ -11,7 +11,7 @@ let GEMINI_API_KEY = window.GEMINI_API_KEY || localStorage.getItem("moodstudy_ge
 const GEMINI_MODEL = window.GEMINI_MODEL || "gemini-2.0-flash";
 
 function askAndSaveGeminiKeyIfNeeded() {
-  if (GEMINI_API_KEY && GEMINI_API_KEY !== "AQ.Ab8RN6I-hhfrtQntmUVlaSEKLyUuIJ4WYOGAdUAoYBjqmmM0rA" && GEMINI_API_KEY !== "AQ.Ab8RN6I-hhfrtQntmUVlaSEKLyUuIJ4WYOGAdUAoYBjqmmM0rA") return true;
+  if (GEMINI_API_KEY && GEMINI_API_KEY !== "AQ.Ab8RN6JDWLhzcKiWaWH7UqhAuGsnlnr3BP_0aij9rCWEwsEzpQ" && GEMINI_API_KEY !== "AQ.Ab8RN6JDWLhzcKiWaWH7UqhAuGsnlnr3BP_0aij9rCWEwsEzpQ") return true;
 
   const wantsInput = confirm(
     "目前沒有設定 Gemini API Key，所以會使用內建備援拆解。\n\n" +
