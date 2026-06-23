@@ -17,21 +17,7 @@
   <!-- 這是組員的 UI 容器 -->
   <div id="app"></div>
 
-  <!-- 以下是我們保留的 Modal 與小工具 -->
-  <button id="chat-widget-btn" class="btn-squish" title="呼叫心靈園丁" style="z-index: 9999;">🌱 呼叫園丁</button>
-
-  <div id="chat-widget-window" class="hidden-widget" style="z-index: 9999;">
-      <div id="chat-widget-header">
-          <h3>🌱 心靈園丁教練</h3>
-          <button id="chat-widget-close">&times;</button>
-      </div>
-      <div id="chat-container">
-      </div>
-      <div id="chat-widget-input-area">
-          <input type="text" id="user-input" placeholder="說說你現在的學習焦慮...">
-          <button id="send-btn">送出</button>
-      </div>
-  </div>
+  <!-- 自製的聊天機器人已移除，改由 Botpress 接管 -->
 
   <!-- 日誌輸入 Modal -->
   <div id="journal-modal" class="modal-overlay" style="z-index: 9999;">
@@ -59,13 +45,12 @@
   </div>
 
   <!-- 引入所有的 JS -->
-  <!-- 1. 組員的 UI 渲染核心 -->
-<script src="./static/js/teammate_script.js?v=7"></script>
-<script src="./static/js/popcat.js?v=7"></script>
-<script src="./static/js/gacha.js?v=7"></script>
-<script src="./static/js/postcard.js?v=7"></script>
+<script src="./static/js/botpress_loader.js?v=21"></script>
+<script src="./static/js/teammate_script.js?v=21"></script>
+<script src="./static/js/popcat.js?v=21"></script>
+<script src="./static/js/gacha.js?v=21"></script>
+<script src="./static/js/postcard.js?v=21"></script>
 
-<script src="./static/js/config.js?v=7"></script>
-<script src="./static/js/chat.js?v=7"></script>
+  <!-- Botpress Scripts are now loaded dynamically in teammate_script.js -->
 </body>
 </html>

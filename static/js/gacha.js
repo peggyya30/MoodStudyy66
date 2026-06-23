@@ -12,7 +12,7 @@ window.initGachaEvents = function() {
     if (tokenDisplay) tokenDisplay.innerText = tokens;
 
     // 每日抽卡次數限制邏輯 (測試中，暫時改為 999)
-    const MAX_DAILY_DRAWS = 999;
+    const MAX_DAILY_DRAWS = 3;
     const todayStr = window.getLocalDateString();
     let lastDrawDate = localStorage.getItem(`lms_last_draw_date_${JSON.parse(localStorage.getItem('moodstudy_login')||'{}').username || ''}`) || '';
     let dailyDraws = parseInt(localStorage.getItem(`lms_daily_draws_${JSON.parse(localStorage.getItem('moodstudy_login')||'{}').username || ''}`)) || 0;
@@ -31,13 +31,16 @@ window.initGachaEvents = function() {
             let finalImgUrl = '';
             
             try {
-                // 呼叫後端 API 隱藏金鑰，並傳入使用者的心情
-                const statusQuery = userMood ? encodeURIComponent(userMood) : 'random meme';
-                const res = await fetch(`http://127.0.0.1:5000/api/meme?status=${statusQuery}`);
-                if (!res.ok) throw new Error("Backend API error or rate limit");
+                // 直接呼叫 Giphy API (因為 GitHub Pages 只能託管靜態檔案，無法跑 Python 後端)
+                const apiKey = "B1s9rIFtU6TCsKLMT6R4y9dsY6Yi0v29";
+                const statusQuery = userMood ? encodeURIComponent(userMood) : 'funny meme';
+                const giphyUrl = `https://api.giphy.com/v1/gifs/random?api_key=${apiKey}&tag=${statusQuery}&rating=g`;
+                
+                const res = await fetch(giphyUrl);
+                if (!res.ok) throw new Error("Giphy API error or rate limit");
                 const data = await res.json();
-                if (!data.success) throw new Error("GIPHY API failed");
-                finalImgUrl = data.imgUrl;
+                if (!data.data || !data.data.images) throw new Error("GIPHY API returned no image");
+                finalImgUrl = data.data.images.original.url;
             } catch (err) {
                 // 若後端掛掉、API 額度用盡，啟用本地備案圖庫
                 const fallbackMemes = [
